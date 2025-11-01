@@ -1,0 +1,87 @@
+/* === GLOBAL STYLE === */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fffafc;
+}
+
+/* === NAVBAR BLOSSOM STYLE === */
+.navbar {
+  background-color: #ff7ab8;
+  box-shadow: 0 2px 8px rgba(255, 122, 184, 0.25);
+  transition: all 0.3s ease;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+/* === NAV LINK === */
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  margin-left: 0.6rem;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+}
+
+/* Hover dan klik berbentuk card/pill */
+.navbar-nav .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.navbar-nav .nav-link.active {
+  background-color: #ffe0ef;
+  color: #ff4f9d !important;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4);
+}
+
+/* Toggle icon warna putih */
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,0.85)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Tombol pink global */
+.btn-pink {
+  background-color: #ff7ab8;
+  border-color: #ff7ab8;
+  color: #fff;
+}
+
+.btn-pink:hover {
+  background-color: #ff539e;
+  border-color: #ff539e;
+  color: #fff;
+}
+
+.btn-outline-pink {
+  color: #ff7ab8;
+  border-color: #ff7ab8;
+}
+
+.btn-outline-pink:hover {
+  background-color: #ff7ab8;
+  color: #fff;
+}
+
+/* Efek bayangan lembut saat scroll */
+.navbar.scrolled {
+  box-shadow: 0 4px 12px rgba(255, 122, 184, 0.35);
+  background-color: #ff7ab8ee;
+  backdrop-filter: blur(8px);
+}
+
+/* Tambahan: warna teks utama */
+.text-pink {
+  color: #ff7ab8;
+}

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('bunga', function (Blueprint $table) {
             $table->id();
             $table->string('gambar');
+            $table->string('jenis');
+            $table->enum('kategori', ['bucket1', 'bucket_makanan']);
             $table->string('nama');
             $table->double('harga');
             $table->timestamps();

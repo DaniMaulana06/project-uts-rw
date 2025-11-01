@@ -11,7 +11,7 @@ class BungaController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.produk');
     }
 
     /**
@@ -19,7 +19,7 @@ class BungaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
