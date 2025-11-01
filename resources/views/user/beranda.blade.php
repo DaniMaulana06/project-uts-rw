@@ -17,7 +17,7 @@
       {{-- Slide 1 --}}
       <div class="carousel-item active">
         {{-- Contoh: ambil dari storage. Jalankan "php artisan storage:link" jika belum. --}}
-        <img src="{{ asset('storage/banner/banner1.png') }}"
+        <img src="{{ asset('storage/banner/gambarbunga1.jpg') }}"
              class="d-block w-100 hero-img" alt="Fresh Flower Banner 1">
         <div class="carousel-caption d-none d-md-block text-start">
           <h2 class="fw-bold">Blossom Avenue</h2>
@@ -28,9 +28,9 @@
 
       {{-- Slide 2 --}}
       <div class="carousel-item">
-        <img src="{{ asset('storage/banner/banner2.png') }}"
+        <img src="{{ asset('storage/banner/gambarbunga2.jpg') }}"
              class="d-block w-100 hero-img" alt="Fresh Flower Banner 2">
-        <div class="carousel-caption d-none d-md-block text-center">
+        <div class="text-center carousel-caption d-none d-md-block">
           <h2 class="fw-bold">Custom Bouquet</h2>
           <p class="mb-3">Bisa request warna, tema, dan budget.</p>
           <a href="{{ url('/about') }}" class="btn btn-outline-pink">Tentang Kami</a>
@@ -39,7 +39,7 @@
 
       {{-- Slide 3 --}}
       <div class="carousel-item">
-        <img src="{{ asset('storage/banner/banner3.png') }}"
+        <img src="{{ asset('storage/banner/gambarbunga1.jpg') }}"
              class="d-block w-100 hero-img" alt="Fresh Flower Banner 3">
         <div class="carousel-caption d-none d-md-block text-end">
           <h2 class="fw-bold">Order Online</h2>
@@ -62,7 +62,7 @@
 
   {{-- konten lain di bawah banner --}}
   <div class="container py-5">
-    <h3 class="fw-bold mb-3">Selamat datang di Blossom Avenue</h3>
+    <h3 class="mb-3 fw-bold">Selamat datang di Blossom Avenue</h3>
     <p class="text-muted">Pilihan buket segar, desain manis, dan bisa custom sesuai acara.</p>
   </div>
 

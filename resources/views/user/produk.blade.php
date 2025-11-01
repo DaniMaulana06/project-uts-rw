@@ -6,71 +6,61 @@
 <div class="container py-4">
 
   {{-- Judul & pencarian --}}
-  <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+  <div class="mb-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
     <div>
-      <h2 class="fw-bold mb-1">Produk Blossom Avenue</h2>
-      <p class="text-muted mb-0">Pilih kategori atau cari jenis bunga/buket.</p>
+      <h2 class="mb-1 fw-bold">Produk Blossom Avenue</h2>
+      <p class="mb-0 text-muted">Pilih kategori atau cari jenis bunga/buket.</p>
     </div>
-    <form class="d-flex mt-3 mt-md-0" method="GET" action="">
+    <form class="mt-3 d-flex mt-md-0" method="GET" action="">
       <input type="text" name="q" class="form-control me-2" placeholder="Cari: mawar, aster, bouquet">
       <button class="btn btn-outline-pink fw-semibold" type="submit">Cari</button>
     </form>
   </div>
 
   {{-- Kategori (tab) --}}
-  <div class="d-flex flex-wrap gap-2 mb-4">
-    <a href="#" class="btn btn-pink active">Semua Produk</a>
-    <a href="#" class="btn btn-outline-pink">Korean Bouquet</a>
-    <a href="#" class="btn btn-outline-pink">Buket Makanan</a>
+  <div class="flex-wrap gap-2 mb-4 d-flex">
+    <a href="{{ url('/produk') }}"
+       class="btn {{ !request('kategori') ? 'btn-pink active' : 'btn-outline-pink' }}">
+      Semua Produk
+    </a>
+    <a href="{{ url('/produk?kategori=bucket1') }}"
+       class="btn {{ request('kategori') == 'bucket1' ? 'btn-pink active' : 'btn-outline-pink' }}">
+      Korean Bouquet
+    </a>
+    <a href="{{ url('/produk?kategori=bucket_makanan') }}"
+       class="btn {{ request('kategori') == 'bucket_makanan' ? 'btn-pink active' : 'btn-outline-pink' }}">
+      Buket Makanan
+    </a>
   </div>
 
   {{-- Grid produk --}}
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-    {{-- contoh card produk statis --}}
+    @forelse ($bungas as $bunga)
     <div class="col">
-      <div class="card border-0 shadow-sm h-100 rounded-4">
-        <img src="https://placehold.co/600x400/pink/fff?text=Korean+Bouquet"
-             class="card-img-top rounded-top-4" style="object-fit:cover;height:250px;">
-        <div class="card-body text-center">
-          <h5 class="card-title mb-1">Aurora Blooms</h5>
-          <p class="text-muted small mb-2">Korean Bouquet</p>
-          <p class="fw-bold text-pink fs-5">Rp 350.000</p>
+      <div class="border-0 shadow-sm card h-100 rounded-4">
+        @php
+            $defaultImage = "https://placehold.co/600x400/ffaad2/fff?text=" . urlencode($bunga->nama);
+            $imagePath = $bunga->gambar ? url('storage/' . $bunga->gambar) : $defaultImage;
+        @endphp
+        <img src="{{ $imagePath }}"
+             class="card-img-top rounded-top-4" style="object-fit:cover;height:250px;"
+             alt="{{ $bunga->nama }}"
+             onerror="console.log('Mencoba URL:', '{{ $imagePath }}'); this.src='{{ $defaultImage }}'">
+        <div class="text-center card-body">
+          <h5 class="mb-1 card-title">{{ $bunga->nama }}</h5>
+          <p class="mb-2 text-muted small">{{ $bunga->jenis }}</p>
+          <p class="fw-bold text-pink fs-5">Rp {{ number_format($bunga->harga, 0, ',', '.') }}</p>
         </div>
-        <div class="card-footer bg-white border-0 text-center pb-4">
+        <div class="pb-4 text-center bg-white border-0 card-footer">
           <button class="btn btn-pink w-75">Lihat Detail</button>
         </div>
       </div>
     </div>
-
-    <div class="col">
-      <div class="card border-0 shadow-sm h-100 rounded-4">
-        <img src="https://placehold.co/600x400/ffaad2/fff?text=Colorburst+Harmony"
-             class="card-img-top rounded-top-4" style="object-fit:cover;height:250px;">
-        <div class="card-body text-center">
-          <h5 class="card-title mb-1">Colorburst Harmony</h5>
-          <p class="text-muted small mb-2">Korean Bouquet</p>
-          <p class="fw-bold text-pink fs-5">Rp 300.000</p>
-        </div>
-        <div class="card-footer bg-white border-0 text-center pb-4">
-          <button class="btn btn-pink w-75">Lihat Detail</button>
-        </div>
-      </div>
+    @empty
+    <div class="py-5 text-center col-12">
+      <p class="mb-0 text-muted">Belum ada produk tersedia.</p>
     </div>
-
-    <div class="col">
-      <div class="card border-0 shadow-sm h-100 rounded-4">
-        <img src="https://placehold.co/600x400/fed6e3/fff?text=Korean+Round+Bouquet"
-             class="card-img-top rounded-top-4" style="object-fit:cover;height:250px;">
-        <div class="card-body text-center">
-          <h5 class="card-title mb-1">Korean Round Bouquet</h5>
-          <p class="text-muted small mb-2">Korean Bouquet</p>
-          <p class="fw-bold text-pink fs-5">Rp 195.000</p>
-        </div>
-        <div class="card-footer bg-white border-0 text-center pb-4">
-          <button class="btn btn-pink w-75">Lihat Detail</button>
-        </div>
-      </div>
-    </div>
+    @endforelse
   </div>
 
 </div>
