@@ -281,4 +281,58 @@
             text-shadow: 0 2px 16px rgba(180, 12, 12, 0.45);
         }
     </style>
+
+{{-- 🌸 Efek Bunga Jatuh --}}
+<div class="falling-flowers"></div>
+
+<style>
+  .falling-flowers {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+  }
+
+  .flower {
+    position: absolute;
+    top: -50px;
+    font-size: 20px;
+    opacity: 0.8;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const flowersContainer = document.querySelector('.falling-flowers');
+  const flowers = ['🌸', '🌷', '💐', '🌺', '🌼'];
+
+  function createFlower() {
+    const flower = document.createElement('span');
+    flower.classList.add('flower');
+    flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+    flower.style.left = Math.random() * 100 + 'vw';
+    flower.style.animationDuration = (3 + Math.random() * 5) + 's';
+    flower.style.fontSize = (16 + Math.random() * 24) + 'px';
+    flowersContainer.appendChild(flower);
+
+    setTimeout(() => flower.remove(), 8000);
+  }
+
+  setInterval(createFlower, 400);
+</script>
 @endsection
