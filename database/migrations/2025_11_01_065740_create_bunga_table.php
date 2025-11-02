@@ -15,8 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('gambar');
             $table->string('jenis');
-            $table->enum('kategori', ['bucket1', 'bucket_makanan']);
-            $table->string('nama');
+            $table->enum('kategori', [
+                'bunga_satuan', 
+                'buket_thumbelina',
+                'buket_makanan',
+                'flower_box'
+            ]);
             $table->double('harga');
             $table->timestamps();
         });

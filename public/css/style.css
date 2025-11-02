@@ -85,3 +85,44 @@ body {
 .text-pink {
   color: #ff7ab8;
 }
+
+.hero-img {
+  height: 420px;
+  object-fit: cover;
+  transition: opacity 3s ease-in-out; 
+}
+
+.carousel-fade .carousel-item {
+  opacity: 0;
+  transition: opacity 3s ease-in-out;
+}
+
+.carousel-fade .carousel-item.active {
+  opacity: 1;
+}
+
+.btn-pink {
+  background: #ff7ab8;
+  border-color: #ff7ab8;
+  color: #fff;
+}
+
+.btn-pink:hover {
+  background: #ff539e;
+  border-color: #ff539e;
+  color: #fff;
+}
+
+.btn-outline-pink {
+  color: #ff7ab8;
+  border-color: #ff7ab8;
+}
+
+.btn-outline-pink:hover {
+  background: #ff7ab8;
+  color: #fff;
+}
+
+.carousel-caption {
+  text-shadow: 0 2px 16px rgba(180, 12, 12, 0.45);
+}

@@ -13,24 +13,19 @@ class BungaController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Bunga::latest();
+        $bunga = Bunga::paginate(6);
 
-        // Filter berdasarkan kategori jika ada
+        // Filter berdasarkan kategori
         if ($request->has('kategori')) {
-            $query->where('kategori', $request->kategori);
+            $bunga->where('kategori', $request->kategori);
         }
 
-        // Filter berdasarkan pencarian jika ada
-        if ($request->has('q')) {
-            $search = $request->q;
-            $query->where(function($q) use ($search) {
-                $q->where('nama', 'like', "%{$search}%")
-                  ->orWhere('jenis', 'like', "%{$search}%");
-            });
+        // Filter pencarian
+        if ($request->filled('q')) {
+            $bunga->where('jenis', 'like', '%' . $request->q . '%');
         }
 
-        $bungas = $query->get();
-        return view('user.produk', compact('bungas'));
+        return view('user.produk', compact('bunga'));
     }
 
     /**
@@ -38,8 +33,8 @@ class BungaController extends Controller
      */
     public function adminIndex()
     {
-        $bungas = Bunga::latest()->paginate(10);
-        return view('admin.bunga.index', compact('bungas'));
+        $bunga = Bunga::latest()->paginate(5);
+        return view('admin.bunga.index', compact('bunga'));
     }
 
     /**
@@ -47,7 +42,8 @@ class BungaController extends Controller
      */
     public function create()
     {
-        return view('admin.bunga.create');
+        $kategori = Bunga::getKategoriList();
+        return view('admin.bunga.create', compact('kategori'));
     }
 
     /**
@@ -55,41 +51,37 @@ class BungaController extends Controller
      */
     public function store(Request $request)
     {
+        $kategoriList = array_keys(Bunga::getKategoriList());
         $request->validate([
-            'nama' => 'required|string',
             'jenis' => 'required|string',
-            'kategori' => 'required|in:bucket1,bucket_makanan',
+            'kategori' => 'required|in:' . implode(',', $kategoriList),
             'harga' => 'required|numeric',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         try {
+            // Ambil file gambar
             $gambar = $request->file('gambar');
-            $filename = $gambar->hashName();
 
-            // Pastikan direktori ada
-            Storage::makeDirectory('public/banner');
-
-            // Upload gambar
-            $path = $gambar->storeAs('public/banner', $filename);
+            // Simpan otomatis ke storage/app/public/images
+            // Laravel akan menamai file secara unik
+            $path = $gambar->store('images', 'public');
 
             if (!$path) {
                 throw new \Exception('Gagal menyimpan file gambar');
             }
 
-            // Buat record baru di database
+            // Simpan data ke database
             Bunga::create([
-                'nama' => $request->nama,
                 'jenis' => $request->jenis,
                 'kategori' => $request->kategori,
                 'harga' => $request->harga,
-                'gambar' => 'banner/' . $filename
+                'gambar' => $path,
             ]);
 
             return redirect()
                 ->route('admin.bunga.index')
                 ->with('success', 'Data bunga berhasil ditambahkan!');
-
         } catch (\Exception $e) {
             return back()
                 ->withInput()
@@ -97,13 +89,15 @@ class BungaController extends Controller
         }
     }
 
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
+        $kategoriList = array_keys(Bunga::getKategoriList());
         $bunga = Bunga::findOrFail($id);
-        return view('admin.bunga.edit', compact('bunga'));
+        return view('admin.bunga.edit', compact('bunga', 'kategoriList'));
     }
 
     /**
@@ -111,44 +105,41 @@ class BungaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $kategoriList = array_keys(Bunga::getKategoriList());
         $bunga = Bunga::findOrFail($id);
 
         $request->validate([
-            'nama' => 'required|string',
             'jenis' => 'required|string',
-            'kategori' => 'required|in:bucket1,bucket_makanan',
+            'kategori' => 'required|in:' . implode(',', $kategoriList),
             'harga' => 'required|numeric',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         try {
             $updateData = [
-                'nama' => $request->nama,
                 'jenis' => $request->jenis,
                 'kategori' => $request->kategori,
-                'harga' => $request->harga
+                'harga' => $request->harga,
             ];
 
+            // Jika user upload gambar baru
             if ($request->hasFile('gambar')) {
                 $gambar = $request->file('gambar');
                 $filename = $gambar->hashName();
 
-                // Pastikan direktori ada
-                Storage::makeDirectory('public/banner');
-
                 // Hapus gambar lama jika ada
-                if ($bunga->gambar) {
+                if ($bunga->gambar && Storage::exists('public/' . $bunga->gambar)) {
                     Storage::delete('public/' . $bunga->gambar);
                 }
 
-                // Upload gambar baru
-                $path = $gambar->storeAs('public/banner', $filename);
+                // Upload gambar baru ke public/images
+                $path = $gambar->storeAs('public/images', $filename);
 
                 if (!$path) {
-                    throw new \Exception('Gagal menyimpan file gambar');
+                    throw new \Exception('Gagal menyimpan file gambar baru');
                 }
 
-                $updateData['gambar'] = 'banner/' . $filename;
+                $updateData['gambar'] = 'images/' . $filename;
             }
 
             $bunga->update($updateData);
@@ -156,7 +147,6 @@ class BungaController extends Controller
             return redirect()
                 ->route('admin.bunga.index')
                 ->with('success', 'Data bunga berhasil diupdate!');
-
         } catch (\Exception $e) {
             return back()
                 ->withInput()
@@ -171,10 +161,12 @@ class BungaController extends Controller
     {
         $bunga = Bunga::findOrFail($id);
 
-        // Hapus gambar
-        Storage::delete('public/' . $bunga->gambar);
+        // Hapus gambar jika ada
+        if ($bunga->gambar && Storage::exists('public/' . $bunga->gambar)) {
+            Storage::delete('public/' . $bunga->gambar);
+        }
 
-        // Hapus data
+        // Hapus data dari database
         $bunga->delete();
 
         return redirect()
@@ -182,4 +174,3 @@ class BungaController extends Controller
             ->with('success', 'Data bunga berhasil dihapus!');
     }
 }
-

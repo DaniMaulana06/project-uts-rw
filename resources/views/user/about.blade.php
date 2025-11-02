@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tim Kami')
+@section('title', 'Tentang Kami')
 @section('body')
 <div class="container py-4">
     <h2 class="fw-bold mb-4">Tim Blossom Avenue</h2>

@@ -10,10 +10,18 @@ class Bunga extends Model
     protected $table = 'bunga';
 
     protected $fillable = [
-        'kategori',   // enum: bucket1 | bucket_makanan
-        'jenis',      // contoh: mawar, aster, Paket 200k
-        'gambar',     // path relatif: buket/thumbelina.jpg
-        'nama',       // opsional (kalau mau nama display)
-        'harga',      // simpan tanpa titik (integer)
+        'kategori',   
+        'jenis',      
+        'gambar',         
+        'harga',      
     ];
+
+    public static function getKategoriList():array{
+        return [
+            'bunga_satuan' => 'Bunga Satuan',
+            'buket_thumbelina' => 'Bunga Thumbelina',
+            'buket_makanan' => 'Buket Makanan',
+            'flower_box' => 'Flower Box',
+        ];
+    }
 }

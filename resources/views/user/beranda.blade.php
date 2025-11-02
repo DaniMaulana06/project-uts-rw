@@ -4,7 +4,7 @@
 
 @section('body')
     {{-- HERO CAROUSEL (full width) --}}
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
         {{-- indikator --}}
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
@@ -61,48 +61,10 @@
         </button>
     </div>
 
-<<<<<<< HEAD
-    {{-- slides --}}
-    <div class="carousel-inner">
-      {{-- Slide 1 --}}
-      <div class="carousel-item active">
-        {{-- Contoh: ambil dari storage. Jalankan "php artisan storage:link" jika belum. --}}
-        <img src="{{ asset('storage/banner/gambarbunga1.jpg') }}"
-             class="d-block w-100 hero-img" alt="Fresh Flower Banner 1">
-        <div class="carousel-caption d-none d-md-block text-start">
-          <h2 class="fw-bold">Blossom Avenue</h2>
-          <p class="mb-3">Buket bunga segar untuk momen spesialmu.</p>
-          <a href="{{ url('/produk') }}" class="btn btn-pink">Lihat Produk</a>
-        </div>
-      </div>
-
-      {{-- Slide 2 --}}
-      <div class="carousel-item">
-        <img src="{{ asset('storage/banner/gambarbunga2.jpg') }}"
-             class="d-block w-100 hero-img" alt="Fresh Flower Banner 2">
-        <div class="text-center carousel-caption d-none d-md-block">
-          <h2 class="fw-bold">Custom Bouquet</h2>
-          <p class="mb-3">Bisa request warna, tema, dan budget.</p>
-          <a href="{{ url('/about') }}" class="btn btn-outline-pink">Tentang Kami</a>
-        </div>
-      </div>
-
-      {{-- Slide 3 --}}
-      <div class="carousel-item">
-        <img src="{{ asset('storage/banner/gambarbunga1.jpg') }}"
-             class="d-block w-100 hero-img" alt="Fresh Flower Banner 3">
-        <div class="carousel-caption d-none d-md-block text-end">
-          <h2 class="fw-bold">Order Online</h2>
-          <p class="mb-3">Pesan mudah, kirim cepat area Palembang.</p>
-          <a href="{{ url('/produk') }}" class="btn btn-pink">Belanja Sekarang</a>
-        </div>
-      </div>
-=======
     {{-- konten lain di bawah banner --}}
     <div class="container py-5">
         <h3 class="fw-bold mb-3">Selamat datang di Blossom Avenue</h3>
         <p class="text-muted">Pilihan buket segar, desain manis, dan bisa custom sesuai acara.</p>
->>>>>>> b4a7dbf190d89f7bc3014b8e23c25d3095fa21ec
     </div>
 
     {{-- styling khusus banner --}}
@@ -112,19 +74,11 @@
             object-fit: cover;
         }
 
-<<<<<<< HEAD
-  {{-- konten lain di bawah banner --}}
-  <div class="container py-5">
-    <h3 class="mb-3 fw-bold">Selamat datang di Blossom Avenue</h3>
-    <p class="text-muted">Pilihan buket segar, desain manis, dan bisa custom sesuai acara.</p>
-  </div>
-=======
         .btn-pink {
             background: #ff7ab8;
             border-color: #ff7ab8;
             color: #fff;
         }
->>>>>>> b4a7dbf190d89f7bc3014b8e23c25d3095fa21ec
 
         .btn-pink:hover {
             background: #ff539e;

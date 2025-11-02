@@ -1,4 +1,4 @@
-x<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,7 +38,7 @@ x<!DOCTYPE html>
             <div class="col-md-2 sidebar">
                 <h4 class="mb-4 text-center text-white">Admin Panel</h4>
                 <nav>
-                    <a href="{{ route('admin.bunga.index') }}">
+                    <a href="/admin/bunga">
                         <i class="fas fa-flower fa-fw"></i> Kelola Bunga
                     </a>
                     <!-- Tambahkan menu lain di sini jika diperlukan -->
