@@ -11,11 +11,13 @@
         <h2 class="mb-1 fw-bold">Produk Blossom Avenue</h2>
         <p class="mb-0 text-muted">Pilih kategori atau cari jenis bunga/buket.</p>
       </div>
+      
       <form class="mt-3 d-flex mt-md-0" method="GET" action="">
-        <input type="text" name="q" class="form-control me-2" placeholder="Cari: mawar, aster, bouquet"
-          value="{{ request('q') }}">
+        <input type="text" name="search" class="form-control me-2" placeholder="Cari: mawar, aster, bouquet"
+          value="{{ request('search') }}">
         <button class="btn btn-outline-pink fw-semibold" type="submit">Cari</button>
       </form>
+      
     </div>
 
     {{-- tab kategori --}}
