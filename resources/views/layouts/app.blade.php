@@ -24,11 +24,11 @@
 
 <body>
 
-  {{-- 🌷 Navbar Blossom Pink --}}
+  {{-- Navbar Blossom--}}
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
 
-      {{-- 🔹 Tempat Logo --}}
+      {{-- Logo --}}
       <a class="navbar-brand d-flex align-items-center" href="/beranda">
         <img src="{{ asset('images/logo.png') }}" alt="Logo Blossom Avenue" width="40" height="40" class="me-2">
         <span>blossom_avenue</span>
@@ -43,6 +43,7 @@
         <div class="navbar-nav ms-auto">
           <a class="nav-link {{ request()->is('beranda') ? 'active' : '' }}" href="/beranda">Beranda</a>
           <a class="nav-link {{ request()->is('produk') ? 'active' : '' }}" href="/produk">Produk</a>
+          <a class="nav-link {{ request()->is('pemesanan') ? 'active' : '' }}" href="/pemesanan">Pemesanan</a>
           <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">About</a>
         </div>
       </div>
@@ -50,6 +51,62 @@
   </nav>
 
   @yield('body')
+
+ <footer style="background: #fce4ec; font-size: 14px; padding: 40px 0;">
+  <div class="container">
+    <div class="row text-start">
+
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-semibold" style="color: #333;">Kontak</h5>
+        <ul class="list-unstyled" style="color: #333; padding-left:0;">
+          <li>0822 1420 8134</li>
+          <li>Palembang, Sumatera Selatan</li>
+          <li>blossomavenue@gmail.com</li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-semibold" style="color: #333;">Informasi</h5>
+        <ul class="list-unstyled" style="color: #333; padding-left:0;">
+          <li><a href="#" style="color: #333; text-decoration: none;">Tentang Kami</a></li>
+          <li><a href="#" style="color: #333; text-decoration: none;">Kontak Kami</a></li>
+          <li><a href="#" style="color: #333; text-decoration: none;">FAQ & Kebijakan</a></li>
+          <li><a href="#" style="color: #333; text-decoration: none;">Partnership</a></li>
+          <li><a href="#" style="color: #333; text-decoration: none;">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-semibold" style="color: #333;">Layanan</h5>
+        <ul class="list-unstyled" style="color: #333; padding-left:0;">
+          <li><a href="#" style="color: #333; text-decoration: none;">Bouquet Bunga</a></li>
+          <li><a href="#" style="color: #333; text-decoration: none;">Standing Flower</a></li>
+          <li><a href="#" style="color: #333; text-decoration: none;">Bunga Wisuda</a></li>
+          <li><a href="#" style="color: #333; text-decoration: none;">Bunga Pengantin</a></li>
+        </ul>
+      </div>
+
+     <div class="col-md-3 mb-4">
+  <h5 class="fw-semibold" style="color: #333;">Lokasi Kami</h5>
+
+  <a href="https://maps.app.goo.gl/ckGi1mr9h6uLszEh8?g_st=com.google.maps.preview.copy" target="_blank" rel="noopener noreferrer" style="display:block; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 100%;">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15950.27468455658!2d104.73112925333721!3d-2.990935261857771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b74c9e996f919%3A0x3083af0cbf7be88f!2sPalembang%2C%20South%20Sumatra!5e0!3m2!1sen!2sid!4v1706948723054!5m2!1sen!2sid"
+      width="100%" height="180" style="border:0; pointer-events:none;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </a>
+
+  <small style="display: block; margin-top: 5px; color:#555;">Klik peta untuk membuka di Google Maps</small>
+</div>
+
+
+    </div>
+
+    <div class="text-center pt-3" style="color: #333; font-size: 13px;">
+      © 2024 Blossom Avenue • All Rights Reserved
+    </div>
+  </div>
+</footer>
+
 
   <script>
     // efek bayangan saat scroll
