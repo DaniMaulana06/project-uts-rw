@@ -11,23 +11,28 @@ class BungaController extends Controller
     /**
      * Display a listing of the resource for user view.
      */
-    public function index(Request $request)
-    {
-        $search = $request->input('search');
-        $bunga = Bunga::where('jenis','like', "%{$search}%")->paginate(6);
+public function index(Request $request)
+{
+    $search = $request->input('search');
+    $kategori = $request->input('kategori');
 
-        // Filter berdasarkan kategori
-        if ($request->has('kategori')) {
-            $bunga->where('kategori', $request->kategori);
-        }
+    $bunga = Bunga::query();
 
-        // Filter pencarian
-        // if ($request->filled('q')) {
-        //     $bunga->where('jenis', 'like', '%' . $request->q . '%');
-        // }
-
-        return view('user.produk', compact('bunga'));
+    // Filter pencarian
+    if (!empty($search)) {
+        $bunga->where('jenis', 'like', "%{$search}%");
     }
+
+    // Filter kategori
+    if (!empty($kategori)) {
+        $bunga->where('kategori', $kategori);
+    }
+
+    // Pagination 6 item per halaman
+    $bunga = $bunga->latest()->paginate(6)->appends($request->all());
+
+    return view('user.produk', compact('bunga'));
+}
 
     /**
      * Display a listing of the resource for admin.
