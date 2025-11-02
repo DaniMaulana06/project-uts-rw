@@ -13,7 +13,8 @@ class BungaController extends Controller
      */
     public function index(Request $request)
     {
-        $bunga = Bunga::paginate(6);
+        $search = $request->input('search');
+        $bunga = Bunga::where('jenis','like', "%{$search}%")->paginate(6);
 
         // Filter berdasarkan kategori
         if ($request->has('kategori')) {
@@ -21,9 +22,9 @@ class BungaController extends Controller
         }
 
         // Filter pencarian
-        if ($request->filled('q')) {
-            $bunga->where('jenis', 'like', '%' . $request->q . '%');
-        }
+        // if ($request->filled('q')) {
+        //     $bunga->where('jenis', 'like', '%' . $request->q . '%');
+        // }
 
         return view('user.produk', compact('bunga'));
     }
