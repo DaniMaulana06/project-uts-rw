@@ -25,5 +25,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/bunga/{id}/edit', [BungaController::class, 'edit'])->name('bunga.edit');
     Route::put('/bunga/{id}', [BungaController::class, 'update'])->name('bunga.update');
     Route::delete('/bunga/{id}', [BungaController::class, 'destroy'])->name('bunga.destroy');
-    
 });

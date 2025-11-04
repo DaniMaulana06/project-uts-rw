@@ -75,7 +75,7 @@
     </div>
 
     {{-- Pagination --}}
-    <div class="d-flex justify-content-center mt-4">
+    <div class="justify-content-center mt-4">
       {{ $bunga->links('pagination::bootstrap-5') }}
     </div>
 
@@ -83,77 +83,6 @@
 
   {{-- Style tambahan --}}
   <style>
-    .btn-pink {
-      background-color: #ff7ab8;
-      border-color: #ff7ab8;
-      color: white;
-    }
-
-    .btn-pink:hover {
-      background-color: #ff539e;
-      border-color: #ff539e;
-      color: #fff;
-    }
-
-    .btn-outline-pink {
-      color: #ff7ab8;
-      border-color: #ff7ab8;
-    }
-
-    .btn-outline-pink:hover {
-      background-color: #ff7ab8;
-      color: #fff;
-    }
-
-    .text-pink {
-      color: #ff7ab8;
-    }
-
-    .btn-outline-pink.active,
-    .btn-pink.active {
-      background-color: #ff7ab8;
-      color: #fff;
-    }
-
-    /* 🌸 Pagination Blossom Style */
-    .pagination {
-      --bs-pagination-color: #ff7ab8;
-      --bs-pagination-hover-color: #fff;
-      --bs-pagination-hover-bg: #ff9ec9;
-      --bs-pagination-hover-border-color: #ff9ec9;
-      --bs-pagination-focus-color: #fff;
-      --bs-pagination-focus-bg: #ff7ab8;
-      --bs-pagination-active-bg: #ff7ab8;
-      --bs-pagination-active-border-color: #ff7ab8;
-      --bs-pagination-border-radius: 2rem;
-      --bs-pagination-padding-x: 0.9rem;
-      --bs-pagination-padding-y: 0.45rem;
-    }
-
-    .pagination .page-link {
-      border: 1px solid #ffc1da;
-      color: #ff7ab8;
-      background-color: #fff;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .pagination .page-link:hover {
-      color: #fff;
-      background-color: #ff9ec9;
-      border-color: #ff9ec9;
-    }
-
-    .pagination .active .page-link {
-      background-color: #ff7ab8;
-      border-color: #ff7ab8;
-      color: white;
-      font-weight: 600;
-    }
-
-    .pagination .disabled .page-link {
-      color: #ffd1e0;
-      background-color: #fff;
-      border-color: #ffd1e0;
-    }
+   
   </style>
 @endsection
