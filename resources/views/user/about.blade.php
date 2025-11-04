@@ -37,16 +37,27 @@
 <img src="https://img.icons8.com/?size=100&id=PDCkbr_yBwSU&format=png&color=000000" class="floating-flower" style="left:90%;width:37px;">    
 
 
-{{-- 🌸 Hero Section --}}
+{{-- Hero Section --}}
 <section class="hero-about d-flex align-items-center position-relative"
   style="background: url('https://i.pinimg.com/736x/f4/b5/cd/f4b5cdbae52d671369c829e5e90c6971.jpg') center/cover no-repeat; height: 70vh;">
+  
   <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(255,240,247,0.6);"></div>
+  
   <div class="container position-relative text-start z-1" data-aos="fade-up">
-    <p class="fw-semibold text-uppercase" style="color:#d63384; letter-spacing:2px;">Profil Perusahaan</p>
-    <h1 class="display-4 fw-bold" style="font-family:'Playfair Display', serif;">Tentang <span style="color:#a81855;">Kami</span></h1>
-    <p class="text-muted mt-3" style="max-width:600px;">Kami percaya setiap bunga membawa cerita dan perasaan. Melalui rangkaian yang elegan dan penuh makna, Blossom Avenue menghadirkan keindahan dalam setiap momen istimewa Anda.</p>
+  
+    <p class="fw-semibold text-uppercase" style="color:#d63384; font-style: italic; letter-spacing:2px;">
+      Profil Perusahaan
+    </p>
+    <h1 class="display-4 fw-bold" style="font-family:'Dear S', serif; font-style: italic;">
+      Tentang <span style="color:#a81855;">Kami</span>
+    </h1>
+    <p class="text-muted mt-3" style="max-width:600px; font-style: italic;">
+      Kami percaya setiap bunga membawa cerita dan perasaan. Melalui rangkaian yang elegan dan penuh makna, Blossom Avenue menghadirkan keindahan dalam setiap momen istimewa Anda.
+    </p>
+    
   </div>
 </section>
+
 
 {{-- 🌷 Deskripsi Singkat / Intro --}}
 <section class="py-5" style="background-color:#fffafc;">
@@ -162,7 +173,7 @@
   }
 </style>
 
-{{-- 🌷 Tim Kami --}}
+{{-- 🌷 Tim Kami Scroll Otomatis --}}
 <section class="py-5" style="background-color:#fff0f6;">
   <div class="container text-center" data-aos="fade-up">
     <h2 class="fw-bold mb-4" style="color:#a81855; font-family:'Playfair Display', serif;">Tim Kami</h2>
@@ -171,81 +182,72 @@
       Inilah orang-orang di balik keindahan <strong>Blossom Avenue</strong>.
     </p>
 
-    <div class="row g-4 justify-content-center">
-      @php
-        $team = [
-          ['img' => 'https://i.pinimg.com/1200x/a1/27/3f/a1273fb8fc43049e1de79d78c9fb9853.jpg', 'name' => 'Syakirah Tul Hasana', 'role' => 'Founder & Florist Lead'],
-          ['img' => 'https://i.pinimg.com/736x/81/5b/45/815b45d4333a427d41f879dcb01d3983.jpg', 'name' => 'Suci Rahmadani', 'role' => 'Product Curator'],
-          ['img' => 'https://i.pinimg.com/1200x/a5/a0/d4/a5a0d42104b81521b0e0e48e72fa6b37.jpg', 'name' => 'Syakirah Tul Hasana', 'role' => 'Content Creator & Photographer'],
-        ];
-      @endphp
+    @php
+      $team = [
+        ['img'=>'https://i.pinimg.com/1200x/a1/27/3f/a1273fb8fc43049e1de79d78c9fb9853.jpg','name'=>'Dani Maulana','role'=>'Founder & Florist Lead'],
+        ['img'=>'https://i.pinimg.com/736x/81/5b/45/815b45d4333a427d41f879dcb01d3983.jpg','name'=>'Suci Rahmadani','role'=>'Product Curator'],
+        ['img'=>'https://i.pinimg.com/1200x/a5/a0/d4/a5a0d42104b81521b0e0e48e72fa6b37.jpg','name'=>'Syakirah Tul Hasana','role'=>'Content Creator & Photographer'],
+        ['img'=>'https://i.pinimg.com/1200x/a1/27/3f/a1273fb8fc43049e1de79d78c9fb9853.jpg','name'=>'Shetya Wardana Defihar','role'=>'Content Creator & Photographer'],
+        ['img'=>'https://i.pinimg.com/736x/81/5b/45/815b45d4333a427d41f879dcb01d3983.jpg','name'=>'Rahmi Fauliza Hanpsari','role'=>'Content Creator & Photographer'],
+        ['img'=>'https://i.pinimg.com/1200x/a5/a0/d4/a5a0d42104b81521b0e0e48e72fa6b37.jpg','name'=>'Nadiyyah Oktalia','role'=>'Content Creator & Photographer'],
+      ];
+    @endphp
 
-      @foreach ($team as $index => $person)
-      <div class="col-lg-4 col-md-6 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="{{ $index * 150 }}">
-        <div class="team-card border-0 rounded-4 p-4 h-100 text-center position-relative overflow-hidden">
-          <div class="team-img-wrapper mx-auto mb-3">
-            <img 
-              src="{{ $person['img'] }}" 
-              alt="{{ $person['name'] }}" 
-              class="rounded-circle border border-3 border-white shadow-sm"
-              width="120" height="120" 
-              style="object-fit: cover;"
-            >
+    <div class="team-carousel-wrapper overflow-hidden position-relative">
+      <div class="team-carousel d-flex">
+        @foreach(array_merge($team, $team) as $person)
+          <div class="team-card border-0 rounded-4 p-4 text-center flex-shrink-0 me-4" style="width:220px; position: relative;">
+            {{-- Optional floating petal inside card --}}
+            <div class="flower-petal" style="background-image:url('https://img.icons8.com/?size=100&id=46545&format=png&color=000000');"></div>
+
+            <div class="team-img-wrapper mx-auto mb-3">
+              <img src="{{ $person['img'] }}" alt="{{ $person['name'] }}" class="rounded-circle border border-3 border-white shadow-sm" width="120" height="120" style="object-fit: cover;">
+            </div>
+            <h5 class="fw-semibold mb-1" style="color:#a81855;">{{ $person['name'] }}</h5>
+            <p class="text-muted small mb-0">{{ $person['role'] }}</p>
           </div>
-          <h5 class="fw-semibold mb-1" style="color:#a81855;">{{ $person['name'] }}</h5>
-          <p class="text-muted small mb-0">{{ $person['role'] }}</p>
-
-          <!-- 🌸 Decorative floating petal -->
-          <span class="flower-petal"></span>
-        </div>
+        @endforeach
       </div>
-      @endforeach
     </div>
   </div>
+
+  {{-- CSS Tim Kami --}}
+  <style>
+    .team-carousel-wrapper { width: 100%; }
+    .team-carousel { display: flex; animation: scrollTeam 20s linear infinite; }
+    @keyframes scrollTeam { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+    .team-card { background-color:#fff; box-shadow:0 5px 15px rgba(255,182,193,0.25); transition:all 0.4s ease; }
+    .team-card:hover { transform: translateY(-12px) scale(1.03); box-shadow: 0 15px 30px rgba(255,182,193,0.45); }
+
+    .team-img-wrapper img { transition: all 0.4s ease; }
+    .team-card:hover img { box-shadow:0 0 15px rgba(255,192,203,0.6); transform: scale(1.05); }
+
+    /* Floating petal animation inside card */
+    .team-card .flower-petal {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 35px;
+      height: 35px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.3;
+      animation: floatPetal 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatPetal {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(10px) rotate(10deg); opacity: 0.5; }
+      100% { transform: translateY(-10px) rotate(-10deg); opacity: 0.3; }
+    }
+
+    @media(max-width:768px){
+      .team-card { width:160px; }
+      .team-img-wrapper img { width:80px; height:80px; }
+    }
+  </style>
 </section>
-
-<style>
-  /* 🌸 Team Card Style */
-  .team-card {
-    background-color: #fff;
-    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.25);
-    transition: all 0.4s ease;
-  }
-
-  .team-card:hover {
-    transform: translateY(-12px) scale(1.03);
-    box-shadow: 0 15px 30px rgba(255, 182, 193, 0.45);
-  }
-
-  /* 🌷 Floating petal animation inside card */
-  .team-card .flower-petal {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    width: 35px;
-    height: 35px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.3;
-    animation: floatPetal 6s ease-in-out infinite alternate;
-  }
-
-  @keyframes floatPetal {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
-    50% { transform: translateY(10px) rotate(10deg); opacity: 0.5; }
-    100% { transform: translateY(-10px) rotate(-10deg); opacity: 0.3; }
-  }
-
-  /* 🌼 Image Wrapper Hover Glow */
-  .team-img-wrapper img {
-    transition: all 0.4s ease;
-  }
-  .team-card:hover img {
-    box-shadow: 0 0 15px rgba(255, 192, 203, 0.6);
-    transform: scale(1.05);
-  }
-</style>
-
 
 <!-- 🌸 AOS Script -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

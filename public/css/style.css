@@ -126,3 +126,192 @@ body {
 .carousel-caption {
   text-shadow: 0 2px 16px rgba(180, 12, 12, 0.45);
 }
+
+.testimonial-card {
+  background-color: #f8eaea;
+  border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 280px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  outline: none;
+  user-select: none;
+}
+
+.testimonial-card:hover,
+.testimonial-card:focus,
+.testimonial-card.active {
+  transform: scale(1.05);
+  box-shadow: ##ff7ab8;
+  background-color: #f1c1c8;
+  z-index: 10;
+  position: relative;
+}
+
+.hero-img {
+  height: 420px;
+  object-fit: cover;
+}
+
+.btn-pink {
+  background: #ff7ab8;
+  border-color: #ff7ab8;
+  color: #fff;
+}
+
+.btn-pink:hover {
+  background: #ff539e;
+  border-color: #ff539e;
+  color: #fff;
+}
+
+.btn-outline-pink {
+  color: #ff7ab8;
+  border-color: #ff7ab8;
+}
+
+.btn-outline-pink:hover {
+  background: #ff7ab8;
+  color: #fff;
+}
+
+.carousel-caption {
+  text-shadow: 0 2px 16px rgba(180, 12, 12, 0.45);
+}
+
+.btn-pink {
+  background-color: #ff7ab8;
+  border-color: #ff7ab8;
+  color: white;
+}
+
+.btn-pink:hover {
+  background-color: #ff539e;
+  border-color: #ff539e;
+  color: #fff;
+}
+
+.btn-outline-pink {
+  color: #ff7ab8;
+  border-color: #ff7ab8;
+}
+
+.btn-outline-pink:hover {
+  background-color: #ff7ab8;
+  color: #fff;
+}
+
+.text-pink {
+  color: #ff7ab8;
+}
+
+.btn-outline-pink.active,
+.btn-pink.active {
+  background-color: #ff7ab8;
+  color: #fff;
+}
+
+/* 🌸 Pagination Blossom Style */
+.pagination {
+  --bs-pagination-color: #ff7ab8;
+  --bs-pagination-hover-color: #fff;
+  --bs-pagination-hover-bg: #ff9ec9;
+  --bs-pagination-hover-border-color: #ff9ec9;
+  --bs-pagination-focus-color: #fff;
+  --bs-pagination-focus-bg: #ff7ab8;
+  --bs-pagination-active-bg: #ff7ab8;
+  --bs-pagination-active-border-color: #ff7ab8;
+  --bs-pagination-border-radius: 2rem;
+  --bs-pagination-padding-x: 0.9rem;
+  --bs-pagination-padding-y: 0.45rem;
+}
+
+.pagination .page-link {
+  border: 1px solid #ffc1da;
+  color: #ff7ab8;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.pagination .page-link:hover {
+  color: #fff;
+  background-color: #ff9ec9;
+  border-color: #ff9ec9;
+}
+
+.pagination .active .page-link {
+  background-color: #ff7ab8;
+  border-color: #ff7ab8;
+  color: white;
+  font-weight: 600;
+}
+
+.pagination .disabled .page-link {
+  color: #ffd1e0;
+  background-color: #fff;
+  border-color: #ffd1e0;
+}
+
+//bunga nyampak
+.falling-flowers {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.flower {
+  position: absolute;
+  top: -50px;
+  font-size: 20px;
+  opacity: 0.8;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.falling-flowers {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.flower {
+  position: absolute;
+  top: -50px;
+  font-size: 20px;
+  opacity: 0.8;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+  }
+
+  100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+  }
+}
