@@ -62,9 +62,13 @@
               <p class="fw-bold text-pink fs-5">Rp{{ number_format($bng->harga, 0, ',', '.') }}</p>
             </div>
 
-            <div class="pb-4 text-center bg-white border-0 card-footer">
-              <button class="btn btn-pink w-75">Masukkan Keranjang</button>
-            </div>
+            <form action="{{ route('cart.add', $bng->id) }}" method="POST">
+              @csrf
+              <div class="pb-4 text-center bg-white border-0 card-footer">
+                <button class="btn btn-pink w-75">Masukkan Keranjang</button>
+              </div>
+            </form>
+
           </div>
         </div>
       @empty

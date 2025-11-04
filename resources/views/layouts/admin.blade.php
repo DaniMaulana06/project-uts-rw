@@ -41,6 +41,10 @@
                     <a href="/admin/bunga">
                         <i class="fas fa-flower fa-fw"></i> Kelola Bunga
                     </a>
+                    <form action="{{ route('admin.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
                     <!-- Tambahkan menu lain di sini jika diperlukan -->
                 </nav>
             </div>
