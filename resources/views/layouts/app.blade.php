@@ -31,7 +31,7 @@
       {{-- Logo --}}
       <a class="navbar-brand d-flex align-items-center" href="/beranda">
         <img src="{{ asset('images/logo.png') }}" alt="Logo Blossom Avenue" width="40" height="40" class="me-2">
-        <span>blossom_avenue</span>
+        <span style="font-family: 'Pacifico', cursive;">Blossom_Avenue</span>
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -43,12 +43,20 @@
         <div class="navbar-nav ms-auto">
           <a class="nav-link {{ request()->is('beranda') ? 'active' : '' }}" href="/beranda">Beranda</a>
           <a class="nav-link {{ request()->is('produk') ? 'active' : '' }}" href="/produk">Produk</a>
-          <a class="nav-link {{ request()->is('pemesanan') ? 'active' : '' }}" href="/pemesanan">Pemesanan</a>
           <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">About</a>
+          <a class="nav-link {{ request()->is('cart') ? 'active' : '' }}" href="/cart">Keranjang</a>
         </div>
       </div>
     </div>
   </nav>
+
+  @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show container mt-3" role="alert">
+      {{ session('success') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
+
 
   @yield('body')
 
@@ -59,16 +67,33 @@
       <div class="col-md-3 mb-4">
         <h5 class="fw-semibold" style="color: #333;">Kontak</h5>
         <ul class="list-unstyled" style="color: #333; padding-left:0;">
-          <li>0822 1420 8134</li>
-          <li>Palembang, Sumatera Selatan</li>
-          <li>blossomavenue@gmail.com</li>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+          <li>
+            <a href="https://wa.me/082214208134">
+              <i class="fa-brands fa-whatsapp" style="color:#25D366; margin-right:6px;"></i>
+              0822 1420 8134
+            </a>
+          </li>
+          <li>
+            <a href="mailto:blossomavenue@gmail.com">
+              <i class="fa-solid fa-envelope" style="color:#EA4335; margin-right:6px;"></i>
+              blossomavenue@gmail.com
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/blossomavenue__/">
+              <i class="fa-brands fa-instagram" style="color:#E4405F; margin-right:6px;"></i>
+              @blossomavenue_
+            </a>
+          </li>
+          
         </ul>
       </div>
 
       <div class="col-md-3 mb-4">
         <h5 class="fw-semibold" style="color: #333;">Informasi</h5>
         <ul class="list-unstyled" style="color: #333; padding-left:0;">
-          <li><a href="#" style="color: #333; text-decoration: none;">Tentang Kami</a></li>
+          <li><a href="/about" style="color: #333; text-decoration: none;">Tentang Kami</a></li>
           <li><a href="#" style="color: #333; text-decoration: none;">Kontak Kami</a></li>
           <li><a href="#" style="color: #333; text-decoration: none;">FAQ & Kebijakan</a></li>
           <li><a href="#" style="color: #333; text-decoration: none;">Partnership</a></li>
