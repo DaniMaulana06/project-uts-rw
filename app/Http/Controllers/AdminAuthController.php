@@ -23,7 +23,7 @@ class AdminAuthController extends Controller
 
             if ($user->role === 'admin') {
                 session(['admin_logged_in' => true, 'admin_name' => $user->name]);
-                return redirect()->route('admin.bunga.index')->with('success', 'Selamat datang, Admin!'); // Redirect to admin bunga page after login
+                return redirect()->route('admin.bunga.index')->with('success', 'Selamat datang, Admin!'); // Redirect hal admin stlh login
             }
 
             Auth::logout();
