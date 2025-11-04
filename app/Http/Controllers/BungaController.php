@@ -11,28 +11,28 @@ class BungaController extends Controller
     /**
      * Display a listing of the resource for user view.
      */
-public function index(Request $request)
-{
-    $search = $request->input('search');
-    $kategori = $request->input('kategori');
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+        $kategori = $request->input('kategori');
 
-    $bunga = Bunga::query();
+        $bunga = Bunga::query();
 
-    // Filter pencarian
-    if (!empty($search)) {
-        $bunga->where('jenis', 'like', "%{$search}%");
+        // Filter pencarian
+        if (!empty($search)) {
+            $bunga->where('jenis', 'like', "%{$search}%");
+        }
+
+        // Filter kategori
+        if (!empty($kategori)) {
+            $bunga->where('kategori', $kategori);
+        }
+
+        // Pagination 6 item per halaman
+        $bunga = $bunga->latest()->paginate(6)->appends($request->all());
+
+        return view('user.produk', compact('bunga'));
     }
-
-    // Filter kategori
-    if (!empty($kategori)) {
-        $bunga->where('kategori', $kategori);
-    }
-
-    // Pagination 6 item per halaman
-    $bunga = $bunga->latest()->paginate(6)->appends($request->all());
-
-    return view('user.produk', compact('bunga'));
-}
 
     /**
      * Display a listing of the resource for admin.
@@ -121,44 +121,32 @@ public function index(Request $request)
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        try {
-            $updateData = [
-                'jenis' => $request->jenis,
-                'kategori' => $request->kategori,
-                'harga' => $request->harga,
-            ];
+        $updateData = [
+            'jenis' => $request->jenis,
+            'kategori' => $request->kategori,
+            'harga' => $request->harga,
+        ];
 
-            // Jika user upload gambar baru
-            if ($request->hasFile('gambar')) {
-                $gambar = $request->file('gambar');
-                $filename = $gambar->hashName();
-
-                // Hapus gambar lama jika ada
-                if ($bunga->gambar && Storage::exists('public/' . $bunga->gambar)) {
-                    Storage::delete('public/' . $bunga->gambar);
-                }
-
-                // Upload gambar baru ke public/images
-                $path = $gambar->storeAs('public/images', $filename);
-
-                if (!$path) {
-                    throw new \Exception('Gagal menyimpan file gambar baru');
-                }
-
-                $updateData['gambar'] = 'images/' . $filename;
+        // Jika user upload gambar baru
+        if ($request->hasFile('gambar')) {
+            // hapus gambar lama
+            if ($bunga->gambar && Storage::exists('public/' . $bunga->gambar)) {
+                Storage::delete('public/' . $bunga->gambar);
             }
 
-            $bunga->update($updateData);
+            // upload gambar baru ke folder public/images
+            $path = $request->file('gambar')->store('images', 'public');
 
-            return redirect()
-                ->route('admin.bunga.index')
-                ->with('success', 'Data bunga berhasil diupdate!');
-        } catch (\Exception $e) {
-            return back()
-                ->withInput()
-                ->withErrors(['gambar' => 'Gagal mengupload gambar: ' . $e->getMessage()]);
+            $updateData['gambar'] = $path;
         }
+
+        $bunga->update($updateData);
+
+        return redirect()
+            ->route('admin.bunga.index')
+            ->with('success', 'Data bunga berhasil diupdate!');
     }
+
 
     /**
      * Remove the specified resource from storage.
