@@ -79,10 +79,14 @@
     </div>
 
     {{-- Pagination --}}
-    <div class=" justify-content-center mt-4">
+    <div class="justify-content-center mt-4">
       {{ $bunga->links('pagination::bootstrap-5') }}
     </div>
 
   </div>
 
+  {{-- Style tambahan --}}
+  <style>
+   
+  </style>
 @endsection
